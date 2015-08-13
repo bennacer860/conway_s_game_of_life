@@ -58,11 +58,11 @@ class Grid
   private
 
   def initialize_the_board
-    @board.each_index{|x|
-      @board[x].each_index{|y|
+    @board.each_index do |x|
+      @board[x].each_index do |y|
         @board[x][y] = Cell.new
-      }
-    }
+      end
+    end
   end
 
 
