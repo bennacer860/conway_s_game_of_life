@@ -5,6 +5,7 @@ class World
     # size of the world x,y
     @grid = Grid.new(x,y)
     @board = @grid.board
+    tick
   end
 
    def tick(generation = 10)
@@ -27,5 +28,5 @@ class World
 
 end
 
-
+World.new(10,10)
 
