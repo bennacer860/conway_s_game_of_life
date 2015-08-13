@@ -1,3 +1,5 @@
+require_relative './grid.rb'
+
 class World
   def initialize(x, y, generations = 10)
     # size of the world x,y
