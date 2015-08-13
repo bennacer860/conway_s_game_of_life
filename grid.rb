@@ -12,35 +12,46 @@ class Grid
 
   def number_of_alive_cells_around(x,y)
     neighbors_number = 0
-
+    puts "my position is #{x},#{y}"
     # |x|-|-|
     # |x|c|-|
     # |x|-|-|
 
-    neighbors_number =+ 1 if in_bound?(x-1,y) and @board[x-1][y] and  @board[x-1][y].alive
-    neighbors_number =+ 1 if in_bound?(x-1,y+1) and @board[x-1][y+1] and  @board[x-1][y+1].alive
-    neighbors_number =+ 1 if in_bound?(x-1,y-1) and @board[x-1][y-1] and  @board[x-1][y-1].alive
+    neighbors_number += 1 if in_bound?(x-1,y) and @board[x-1][y] and  @board[x-1][y].alive
+    neighbors_number += 1 if in_bound?(x-1,y+1) and @board[x-1][y+1] and  @board[x-1][y+1].alive
+    neighbors_number += 1 if in_bound?(x-1,y-1) and @board[x-1][y-1] and  @board[x-1][y-1].alive
+
+    puts "found you #{x-1},#{y}" if (in_bound?(x-1,y) and @board[x-1][y] and  @board[x-1][y].alive)
+    puts "found you #{x-1},#{y+1}" if (in_bound?(x-1,y+1) and @board[x-1][y+1] and  @board[x-1][y+1].alive)
+    puts "found you #{x-1},#{y-1}" if (in_bound?(x-1,y-1) and @board[x-1][y-1] and  @board[x-1][y-1].alive)
 
     # |-|x|-|
     # |-|c|-|
     # |-|x|-|
 
-    neighbors_number =+ 1 if in_bound?(x,y+1) and @board[x][y+1] and @board[x][y+1].alive
-    neighbors_number =+ 1 if in_bound?(x,y-1) and @board[x][y-1] and @board[x][y-1].alive
+    neighbors_number += 1 if in_bound?(x,y+1) and @board[x][y+1] and @board[x][y+1].alive
+    neighbors_number += 1 if in_bound?(x,y-1) and @board[x][y-1] and @board[x][y-1].alive
+
+    puts "found you #{x},#{y+1}" if (in_bound?(x-1,y) and @board[x][y+1] and  @board[x][y+1].alive)
+    puts "found you #{x},#{y-1}" if (in_bound?(x,y-1) and @board[x][y-1] and  @board[x][y-1].alive)
 
     # |-|-|x|
     # |-|c|x|
     # |-|-|x|
 
-    neighbors_number =+ 1 if in_bound?(x+1,y+1) and @board[x+1][y+1] and  @board[x+1][y+1].alive
-    neighbors_number =+ 1 if in_bound?(x,y+1) and @board[x][y+1] and  @board[x][y+1].alive
-    neighbors_number =+ 1 if in_bound?(x-1,y+1) and @board[x-1][y+1] and  @board[x-1][y+1].alive
-   
+    neighbors_number += 1 if in_bound?(x+1,y+1) and @board[x+1][y+1] and  @board[x+1][y+1].alive
+    neighbors_number += 1 if in_bound?(x,y+1) and @board[x][y+1] and  @board[x][y+1].alive
+    neighbors_number += 1 if in_bound?(x-1,y+1) and @board[x-1][y+1] and  @board[x-1][y+1].alive
+
+    puts "found you #{x+1},#{y+1}" if (in_bound?(x+1,y+1) and @board[x+1][y+1] and  @board[x+1][y+1].alive)
+    puts "found you #{x},#{y+1}" if (in_bound?(x,y+1) and @board[x][y+1] and  @board[x][y+1].alive)
+    puts "found you #{x-1},#{y+1}" if (in_bound?(x-1,y+1) and @board[x-1][y+1] and  @board[x-1][y+1].alive)
+
     neighbors_number
   end
 
   def in_bound?(x,y)
-    x < @width and y < @height
+    (0 <= x and x < @width) and ( 0<= y and  y < @height)
   end
   private
 
@@ -55,5 +66,3 @@ class Grid
 
 end
 
-#grid = Grid.new(2,2)
-#binding.pry
