@@ -17,27 +17,31 @@ class Grid
     # |x|c|-|
     # |x|-|-|
 
-    neighbors_number++ if @board[x-1][y] and  @board[x-1][y]
-    neighbors_number++ if @board[x-1][y+1] and  @board[x-1][y+1]
-    neighbors_number++ if @board[x-1][y-1] and  @board[x-1][y-1]
+    neighbors_number =+ 1 if in_bound?(x-1,y) and @board[x-1][y] and  @board[x-1][y].alive
+    neighbors_number =+ 1 if in_bound?(x-1,y+1) and @board[x-1][y+1] and  @board[x-1][y+1].alive
+    neighbors_number =+ 1 if in_bound?(x-1,y-1) and @board[x-1][y-1] and  @board[x-1][y-1].alive
 
     # |-|x|-|
     # |-|c|-|
     # |-|x|-|
 
-    neighbors_number++ if @board[x][y+1] and  @board[x][y+1]
-    neighbors_number++ if @board[x][y-1] and  @board[x][y-1]
+    neighbors_number =+ 1 if in_bound?(x,y+1) and @board[x][y+1] and @board[x][y+1].alive
+    neighbors_number =+ 1 if in_bound?(x,y-1) and @board[x][y-1] and @board[x][y-1].alive
 
     # |-|-|x|
     # |-|c|x|
     # |-|-|x|
 
-    neighbors_number++ if @board[x+1][y+1] and  @board[x+1][y+1]
-    neighbors_number++ if @board[x][y+1] and  @board[x][y+1]
-    neighbors_number++ if @board[x-1][y+1] and  @board[x-1][y+1]
-
+    neighbors_number =+ 1 if in_bound?(x+1,y+1) and @board[x+1][y+1] and  @board[x+1][y+1].alive
+    neighbors_number =+ 1 if in_bound?(x,y+1) and @board[x][y+1] and  @board[x][y+1].alive
+    neighbors_number =+ 1 if in_bound?(x-1,y+1) and @board[x-1][y+1] and  @board[x-1][y+1].alive
+   
+    neighbors_number
   end
 
+  def in_bound?(x,y)
+    x < @width and y < @height
+  end
   private
 
   def initialize_the_board

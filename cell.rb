@@ -1,6 +1,7 @@
 require 'pry'
 class Cell
-  attr_accessor :x,:y
+  attr_accessor :alive
+  
 
   def initialize(alive=false)
     @alive = alive 
