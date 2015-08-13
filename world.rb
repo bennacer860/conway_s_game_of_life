@@ -11,12 +11,15 @@ class World
   end
 
   def seeds
+  end
+
+  def stable_pattern
+    # you need at least a 2x2 world
     @grid.seed_a_cell(0,0)
     @grid.seed_a_cell(1,0)
     @grid.seed_a_cell(0,1)
     @grid.seed_a_cell(1,1)
   end
-
 
   def tick(generations)
     0.upto(generations) do
