@@ -10,8 +10,12 @@ class World
     tick(generations)
   end
 
-  def seed
-    
+  def seeds
+    @grid.seed_a_cell(4,0)
+    @grid.seed_a_cell(4,1)
+    @grid.seed_a_cell(4,2)
+    @grid.seed_a_cell(2,1)
+    @grid.seed_a_cell(3,2)
   end
 
   def boat_pattern
@@ -44,7 +48,7 @@ class World
           # Any live cell with two or three live neighbours lives, unchanged, to the next generation.
           cell.alive = true if cell.alive and number_of_neighbors > 1 
           # Any dead cell with exactly three live neighbours cells will come to life.
-          cell.alive = false if !cell.alive and number_of_neighbors == 3 
+          cell.alive = true if !cell.alive and number_of_neighbors == 3 
         end
       end
     end
@@ -52,4 +56,4 @@ class World
 
 end
 
-w = World.new(4,3,4)
+w = World.new(10,10,5)
