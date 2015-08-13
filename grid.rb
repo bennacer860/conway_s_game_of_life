@@ -3,10 +3,10 @@ require_relative './cell.rb'
 class Grid
   attr_reader :board
   
-  def initialize(width=40,height=40)
-    @width  = width
-    @height = height
-    @board = Array.new(@width){ Array.new(@height)}
+  def initialize(rows=40,columns=40)
+    @width  = rows
+    @height = columns
+    @board = Array.new(@height){ Array.new(@width)}
     initialize_the_board
   end
 
@@ -44,7 +44,7 @@ class Grid
   end
 
   def in_bound?(x,y)
-    (0 <= x and x < @width) and ( 0<= y and  y < @height)
+    (0 <= x and x < @height) and ( 0<= y and  y < @width)
   end
   private
 

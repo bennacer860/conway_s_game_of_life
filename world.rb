@@ -1,12 +1,24 @@
 require_relative './grid.rb'
 
 class World
-  def initialize(x, y, generations = 10)
+  attr_reader :board
+  def initialize(width, height, generations = 10)
     # size of the world x,y
-    @grid = Grid.new(x,y)
+    @grid = Grid.new(width,height)
     @board = @grid.board
-    tick
+    seeds
+    tick(generations)
   end
+
+  def seeds
+    @grid.seed_a_cell(0,0)
+    @grid.seed_a_cell(1,0)
+    @grid.seed_a_cell(0,1)
+    @grid.seed_a_cell(1,2)
+    @grid.seed_a_cell(2,1)
+    @grid.seed_a_cell(2,2)
+  end
+
 
   def show_board
     puts "-" * 50
@@ -19,26 +31,27 @@ class World
     end
   end
 
-  def tick(generation = 10)
-    0.upto(generation) do
+  def tick(generations)
+    0.upto(generations) do
+      show_board
       @board.each_index do |x|
         @board[x].each_index do |y|
           cell = @board[x][y]
+          number_of_neighbors =  @grid.number_of_alive_cells_around(x,y) 
           # Any live cell with fewer than two live neighbours dies, as if by needs caused by underpopulation.
-          cell.alive = false if cell.alive and @grid.number_of_alive_cells_around(x,y) < 2  
+          cell.alive = false if cell.alive and number_of_neighbors < 2  
           # Any live cell with more than three live neighbours dies, as if by overcrowding.
-          cell.alive = false if cell.alive and @grid.number_of_alive_cells_around(x,y) > 3 
+          cell.alive = false if cell.alive and number_of_neighbors > 3 
           # Any live cell with two or three live neighbours lives, unchanged, to the next generation.
-          cell.alive = false if cell.alive and @grid.number_of_alive_cells_around(x,y) > 3 
+          cell.alive = true if cell.alive and number_of_neighbors > 1 
           # Any dead cell with exactly three live neighbours cells will come to life.
-          cell.alive = false if !cell.alive and @grid.number_of_alive_cells_around(x,y) == 3 
+          cell.alive = false if !cell.alive and number_of_neighbors == 3 
         end
       end
-      show_board
     end
   end
 
 end
 
-World.new(10,10)
-
+w = World.new(3,2,4)
+puts w.board.inspect
