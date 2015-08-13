@@ -18,20 +18,9 @@ class World
   end
 
 
-  def show_board
-    puts "-" * 50
-    @board.each_index do |x|
-      @board[x].each_index do |y|
-        dispay =  @board[x][y].alive ? 'x': '.'
-        print dispay
-      end
-      puts ""
-    end
-  end
-
   def tick(generations)
     0.upto(generations) do
-      show_board
+      @grid.show_board
       @board.each_index do |x|
         @board[x].each_index do |y|
           cell = @board[x][y]
@@ -52,4 +41,3 @@ class World
 end
 
 w = World.new(3,2,4)
-puts w.board.inspect
