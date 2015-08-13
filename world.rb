@@ -10,7 +10,16 @@ class World
     tick(generations)
   end
 
-  def seeds
+  def seed
+    
+  end
+
+  def boat_pattern
+    @grid.seed_a_cell(0,0)
+    @grid.seed_a_cell(1,0)
+    @grid.seed_a_cell(0,1)
+    @grid.seed_a_cell(2,1)
+    @grid.seed_a_cell(1,2)
   end
 
   def stable_pattern
@@ -43,4 +52,4 @@ class World
 
 end
 
-w = World.new(3,2,4)
+w = World.new(4,3,4)
