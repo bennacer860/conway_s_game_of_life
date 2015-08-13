@@ -7,6 +7,15 @@ class TestGrid < Minitest::Test
     @board = @grid.board
   end
 
+  def test_seed_a_cell
+    @grid.seed_a_cell(0,0)
+    @grid.seed_a_cell(1,1)
+    @grid.seed_a_cell(22,33)
+    assert @board[0][0].alive, "cell should alive here"
+    assert @board[1][1].alive, "cell should alive here"  
+  
+  end
+
   def test_find_the_right_number_of_neighbors
     # add some alive cells 
     # |c|-|-|

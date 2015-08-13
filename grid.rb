@@ -10,6 +10,11 @@ class Grid
     initialize_the_board
   end
 
+  def seed_a_cell(x,y)
+    # ignore if out of bound
+    @board[x][y].alive = true if in_bound?(x,y)
+  end
+
   def number_of_alive_cells_around(x,y)
     neighbors_number = 0
     # |x|-|-|
