@@ -13,7 +13,6 @@ class TestGrid < Minitest::Test
     # |-|c|-|
     # |-|-|c|
   
-    assert 1
     @board[0][0].alive = true
     @board[1][1].alive = true
     @board[2][2].alive = true
@@ -22,9 +21,4 @@ class TestGrid < Minitest::Test
     assert_equal 2 , @grid.number_of_alive_cells_around(1,1)
   end
 
-
-  def test_that_will_be_skipped
-    assert 1
-
-  end
 end
