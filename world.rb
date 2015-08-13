@@ -14,9 +14,7 @@ class World
     @grid.seed_a_cell(0,0)
     @grid.seed_a_cell(1,0)
     @grid.seed_a_cell(0,1)
-    @grid.seed_a_cell(1,2)
-    @grid.seed_a_cell(2,1)
-    @grid.seed_a_cell(2,2)
+    @grid.seed_a_cell(1,1)
   end
 
 

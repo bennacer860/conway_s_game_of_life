@@ -9,6 +9,17 @@ class Grid
     @board = Array.new(@height){ Array.new(@width)}
     initialize_the_board
   end
+  
+  def show_board
+    puts "-" * 50
+    @board.each_index do |x|
+      @board[x].each_index do |y|
+        dispay =  @board[x][y].alive ? 'x': '.'
+        print dispay
+      end
+      puts ""
+    end
+  end
 
   def seed_a_cell(x,y)
     # ignore if out of bound
@@ -24,21 +35,19 @@ class Grid
     neighbors_number += 1 if in_bound?(x-1,y) and @board[x-1][y] and @board[x-1][y].alive
     neighbors_number += 1 if in_bound?(x-1,y+1) and @board[x-1][y+1] and @board[x-1][y+1].alive
     neighbors_number += 1 if in_bound?(x-1,y-1) and @board[x-1][y-1] and @board[x-1][y-1].alive
-
     # |-|x|-|
     # |-|c|-|
     # |-|x|-|
 
     neighbors_number += 1 if in_bound?(x,y+1) and @board[x][y+1] and @board[x][y+1].alive
     neighbors_number += 1 if in_bound?(x,y-1) and @board[x][y-1] and @board[x][y-1].alive
-
     # |-|-|x|
     # |-|c|x|
     # |-|-|x|
 
+    neighbors_number += 1 if in_bound?(x+1,y) and @board[x+1][y] and @board[x+1][y].alive
     neighbors_number += 1 if in_bound?(x+1,y+1) and @board[x+1][y+1] and @board[x+1][y+1].alive
-    neighbors_number += 1 if in_bound?(x,y+1) and @board[x][y+1] and @board[x][y+1].alive
-    neighbors_number += 1 if in_bound?(x-1,y+1) and @board[x-1][y+1] and @board[x-1][y+1].alive
+    neighbors_number += 1 if in_bound?(x+1,y-1) and @board[x+1][y-1] and @board[x+1][y-1].alive
 
     neighbors_number
   end
