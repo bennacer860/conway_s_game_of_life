@@ -1,5 +1,5 @@
 require 'pry'
-require './cell.rb'
+require_relative './cell.rb'
 class Grid
   attr_reader :board
   
@@ -55,5 +55,5 @@ class Grid
 
 end
 
-grid = Grid.new(2,2)
-binding.pry
+#grid = Grid.new(2,2)
+#binding.pry
