@@ -8,7 +8,18 @@ class World
     tick
   end
 
-   def tick(generation = 10)
+  def show_board
+    puts "-" * 50
+    @board.each_index do |x|
+      @board[x].each_index do |y|
+        dispay =  @board[x][y].alive ? 'x': '.'
+        print dispay
+      end
+      puts ""
+    end
+  end
+
+  def tick(generation = 10)
     0.upto(generation) do
       @board.each_index do |x|
         @board[x].each_index do |y|
@@ -23,6 +34,7 @@ class World
           cell.alive = false if !cell.alive and @grid.number_of_alive_cells_around(x,y) == 3 
         end
       end
+      show_board
     end
   end
 
