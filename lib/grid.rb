@@ -25,36 +25,42 @@ class Grid
   end
 
   def number_of_alive_cells_around(row,column)
-    neighbors_number = 0
-    # |x|-|-|
-    # |x|c|-|
-    # |x|-|-|
+    alive_neighbors = [
+      # |x|-|-|
+      # |x|c|-|
+      # |x|-|-|
+      alive?(row-1, column),
+      alive?(row-1, column+1),
+      alive?(row-1, column-1),
 
-    neighbors_number += 1 if in_bound?(row-1,column) && @board[row-1][column] && @board[row-1][column].alive
-    neighbors_number += 1 if in_bound?(row-1,column+1) && @board[row-1][column+1] && @board[row-1][column+1].alive
-    neighbors_number += 1 if in_bound?(row-1,column-1) && @board[row-1][column-1] && @board[row-1][column-1].alive
-    # |-|x|-|
-    # |-|c|-|
-    # |-|x|-|
+      # |-|x|-|
+      # |-|c|-|
+      # |-|x|-|
+      alive?(row, column+1),
+      alive?(row, column-1),
 
-    neighbors_number += 1 if in_bound?(row,column+1) && @board[row][column+1] && @board[row][column+1].alive
-    neighbors_number += 1 if in_bound?(row,column-1) && @board[row][column-1] && @board[row][column-1].alive
-    # |-|-|x|
-    # |-|c|x|
-    # |-|-|x|
-
-    neighbors_number += 1 if in_bound?(row+1,column) && @board[row+1][column] && @board[row+1][column].alive
-    neighbors_number += 1 if in_bound?(row+1,column+1) && @board[row+1][column+1] && @board[row+1][column+1].alive
-    neighbors_number += 1 if in_bound?(row+1,column-1) && @board[row+1][column-1] && @board[row+1][column-1].alive
-
-    neighbors_number
+      # |-|-|x|
+      # |-|c|x|
+      # |-|-|x|
+      alive?(row+1, column),
+      alive?(row+1, column+1),
+      alive?(row+1, column-1),
+    ].count(true)
   end
+
+  private 
 
   def in_bound?(row,column)
     (0 <= row && row < @width) && ( 0 <= column && column < @width)
   end
 
-  private
+  def alive?(row, column)
+       exists?(row, column) && @board[row][column].alive
+  end
+
+  def exists?(row, column)
+      in_bound?(row, column) && @board[row][column]
+  end
 
   def initialize_the_board
     @board.each_index do |row|
