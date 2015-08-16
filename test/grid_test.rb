@@ -2,6 +2,8 @@ lib = File.expand_path("../../lib", __FILE__)
 $:.unshift(lib)
 Dir[File.join(lib, "*.rb")].each {|file| require File.basename(file) }
 require "minitest/autorun"
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 
 class TestGrid < Minitest::Test
   def setup
