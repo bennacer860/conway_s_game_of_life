@@ -65,4 +65,4 @@ class World
 
 end
 
-w = World.new(10,10,5)
+w = World.new(10,10,25)
