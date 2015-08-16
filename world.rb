@@ -36,7 +36,9 @@ class World
 
   def tick(generations)
     0.upto(generations) do
+      system("clear")
       @grid.show_board
+      sleep(1)
       future_orders = []
 
       @board.each_index do |row|

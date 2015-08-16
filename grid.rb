@@ -11,8 +11,6 @@ class Grid
   end
 
   def show_board
-
-    puts "-" * 50
     @board.each_index do |row|
       @board[row].each_index do |column|
         dispay =  @board[row][column].alive ? 'x': '.'
