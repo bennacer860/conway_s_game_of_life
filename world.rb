@@ -37,20 +37,27 @@ class World
   def tick(generations)
     0.upto(generations) do
       @grid.show_board
-      @board.each_index do |x|
-        @board[x].each_index do |y|
-          cell = @board[x][y]
-          number_of_neighbors =  @grid.number_of_alive_cells_around(x,y) 
+      future_orders = []
+
+      @board.each_index do |row|
+        @board[row].each_index do |column|
+          cell = @board[row][column]
+          number_of_neighbors =  @grid.number_of_alive_cells_around(row,column) 
           # Any live cell with fewer than two live neighbours dies, as if by needs caused by underpopulation.
-          cell.alive = false if cell.alive and number_of_neighbors < 2  
+          future_orders << {row: row, column: column, alive: false} if cell.alive and number_of_neighbors < 2
           # Any live cell with more than three live neighbours dies, as if by overcrowding.
-          cell.alive = false if cell.alive and number_of_neighbors > 3 
+          future_orders << {row: row, column: column, alive: false} if cell.alive and number_of_neighbors > 3
           # Any live cell with two or three live neighbours lives, unchanged, to the next generation.
-          cell.alive = true if cell.alive and number_of_neighbors > 1 
+          future_orders << {row: row, column: column, alive: true} if cell.alive and (number_of_neighbors == 2 || number_of_neighbors == 3)
           # Any dead cell with exactly three live neighbours cells will come to life.
-          cell.alive = true if !cell.alive and number_of_neighbors == 3 
+          future_orders << {row: row, column: column, alive: true}if !cell.alive and number_of_neighbors == 3
         end
       end
+
+      # the trick here is to execute all the move at the end of the tick
+      future_orders.each{ |order|
+        @board[order[:row]][order[:column]].alive = order[:alive]
+      }
     end
   end
 
