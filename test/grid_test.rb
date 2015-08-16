@@ -3,7 +3,7 @@ require "minitest/autorun"
 
 class TestGrid < Minitest::Test
   def setup
-    @grid  = Grid.new(3,3)
+    @grid  = Grid.new(5,6)
     @board = @grid.board
   end
 
@@ -44,5 +44,28 @@ class TestGrid < Minitest::Test
     assert_equal 3 , @grid.number_of_alive_cells_around(1,0)
     assert_equal 3 , @grid.number_of_alive_cells_around(1,1)
   end
+
+  def test_a_glider
+
+    # |-|-|-|-|-|
+    # |-|-|-|-|-|
+    # |-|x|-|-|-|
+    # |-|-|x|-|-|
+    # |x|x|x|-|-|
+    # |-|-|-|-|-|
+
+    @grid.seed_a_cell(4,0)
+    @grid.seed_a_cell(4,1)
+    @grid.seed_a_cell(4,2)
+    @grid.seed_a_cell(2,1)
+    @grid.seed_a_cell(3,2)
+
+    assert_equal 1, @grid.number_of_alive_cells_around(4,0)
+    assert_equal 3, @grid.number_of_alive_cells_around(4,1)
+    assert_equal 2, @grid.number_of_alive_cells_around(4,2)
+    assert_equal 1, @grid.number_of_alive_cells_around(2,1)
+    assert_equal 3, @grid.number_of_alive_cells_around(3,2)
+  end
+
 end
 
