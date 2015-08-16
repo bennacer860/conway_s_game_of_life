@@ -1,4 +1,3 @@
-require 'pry'
 require_relative './cell.rb'
 class Grid
   attr_reader :board
