@@ -30,28 +30,28 @@ class Grid
     # |x|c|-|
     # |x|-|-|
 
-    neighbors_number += 1 if in_bound?(row-1,column) and @board[row-1][column] and @board[row-1][column].alive
-    neighbors_number += 1 if in_bound?(row-1,column+1) and @board[row-1][column+1] and @board[row-1][column+1].alive
-    neighbors_number += 1 if in_bound?(row-1,column-1) and @board[row-1][column-1] and @board[row-1][column-1].alive
+    neighbors_number += 1 if in_bound?(row-1,column) && @board[row-1][column] && @board[row-1][column].alive
+    neighbors_number += 1 if in_bound?(row-1,column+1) && @board[row-1][column+1] && @board[row-1][column+1].alive
+    neighbors_number += 1 if in_bound?(row-1,column-1) && @board[row-1][column-1] && @board[row-1][column-1].alive
     # |-|x|-|
     # |-|c|-|
     # |-|x|-|
 
-    neighbors_number += 1 if in_bound?(row,column+1) and @board[row][column+1] and @board[row][column+1].alive
-    neighbors_number += 1 if in_bound?(row,column-1) and @board[row][column-1] and @board[row][column-1].alive
+    neighbors_number += 1 if in_bound?(row,column+1) && @board[row][column+1] && @board[row][column+1].alive
+    neighbors_number += 1 if in_bound?(row,column-1) && @board[row][column-1] && @board[row][column-1].alive
     # |-|-|x|
     # |-|c|x|
     # |-|-|x|
 
-    neighbors_number += 1 if in_bound?(row+1,column) and @board[row+1][column] and @board[row+1][column].alive
-    neighbors_number += 1 if in_bound?(row+1,column+1) and @board[row+1][column+1] and @board[row+1][column+1].alive
-    neighbors_number += 1 if in_bound?(row+1,column-1) and @board[row+1][column-1] and @board[row+1][column-1].alive
+    neighbors_number += 1 if in_bound?(row+1,column) && @board[row+1][column] && @board[row+1][column].alive
+    neighbors_number += 1 if in_bound?(row+1,column+1) && @board[row+1][column+1] && @board[row+1][column+1].alive
+    neighbors_number += 1 if in_bound?(row+1,column-1) && @board[row+1][column-1] && @board[row+1][column-1].alive
 
     neighbors_number
   end
 
   def in_bound?(row,column)
-    (0 <= row and row < @width) and ( 0 <= column and column < @width)
+    (0 <= row && row < @width) && ( 0 <= column && column < @width)
   end
 
   private

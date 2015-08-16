@@ -46,13 +46,13 @@ class World
           cell = @board[row][column]
           number_of_neighbors =  @grid.number_of_alive_cells_around(row,column) 
           # Any live cell with fewer than two live neighbours dies, as if by needs caused by underpopulation.
-          future_orders << {row: row, column: column, alive: false} if cell.alive and number_of_neighbors < 2
+          future_orders << {row: row, column: column, alive: false} if cell.alive && number_of_neighbors < 2
           # Any live cell with more than three live neighbours dies, as if by overcrowding.
-          future_orders << {row: row, column: column, alive: false} if cell.alive and number_of_neighbors > 3
+          future_orders << {row: row, column: column, alive: false} if cell.alive && number_of_neighbors > 3
           # Any live cell with two or three live neighbours lives, unchanged, to the next generation.
-          future_orders << {row: row, column: column, alive: true} if cell.alive and (number_of_neighbors == 2 || number_of_neighbors == 3)
+          future_orders << {row: row, column: column, alive: true} if cell.alive && (number_of_neighbors == 2 || number_of_neighbors == 3)
           # Any dead cell with exactly three live neighbours cells will come to life.
-          future_orders << {row: row, column: column, alive: true}if !cell.alive and number_of_neighbors == 3
+          future_orders << {row: row, column: column, alive: true}if !cell.alive && number_of_neighbors == 3
         end
       end
 
