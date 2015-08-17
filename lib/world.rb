@@ -11,29 +11,22 @@ class World
   end
 
   def seeds
-    @grid.seed_a_cell(4,0)
-    @grid.seed_a_cell(4,1)
-    @grid.seed_a_cell(4,2)
-    @grid.seed_a_cell(2,1)
-    @grid.seed_a_cell(3,2)
+    @grid.seed(glider_pattern)
+  end
+
+  def glider_pattern
+    glider = [[4,0],[4,1],[4,2],[2,1],[3,2]]
   end
 
   def boat_pattern
-    @grid.seed_a_cell(0,0)
-    @grid.seed_a_cell(1,0)
-    @grid.seed_a_cell(0,1)
-    @grid.seed_a_cell(2,1)
-    @grid.seed_a_cell(1,2)
+    glider = [[0,0],[0,1],[1,0],[2,1],[1,2]]
   end
 
   def stable_pattern
     # you need at least a 2x2 world
-    @grid.seed_a_cell(0,0)
-    @grid.seed_a_cell(1,0)
-    @grid.seed_a_cell(0,1)
-    @grid.seed_a_cell(1,1)
+    glider = [[0,0],[1,0],[0,1],[1,1]]
   end
-        
+
   def execute_moves(moves)
     moves.each{ |order|
       @board[order[:row]][order[:column]].alive = order[:alive]
@@ -46,7 +39,7 @@ class World
       system("clear")
       @grid.show_board
       sleep(1)
- 
+
       @board.each_index do |row|
         @board[row].each_index do |column|
           cell = @board[row][column]

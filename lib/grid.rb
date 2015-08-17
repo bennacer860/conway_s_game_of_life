@@ -20,6 +20,7 @@ class Grid
   end
 
   def seed(coordinates)
+    # TODO throw an exception for valid input
     coordinates.each do |coordinate|
       seed_a_cell(coordinate[0],coordinate[1])
     end
@@ -57,6 +58,7 @@ class Grid
   private 
 
   def in_bound?(row,column)
+    # TODO throw an exception for valid input
     (0 <= row && row < @width) && ( 0 <= column && column < @width)
   end
 
