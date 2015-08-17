@@ -19,6 +19,12 @@ class Grid
     end
   end
 
+  def seed(coordinates)
+    coordinates.each do |coordinate|
+      seed_a_cell(coordinate[0],coordinate[1])
+    end
+  end
+
   def seed_a_cell(row,column)
     # ignore if out of bound
     @board[row][column].alive = true if in_bound?(row,column)

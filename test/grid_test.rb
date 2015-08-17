@@ -71,5 +71,15 @@ class TestGrid < Minitest::Test
     assert_equal 3, @grid.number_of_alive_cells_around(3,2)
   end
 
+  def test_seed_with_a_hash
+    glider = [[4,0],[4,1],[4,2],[2,1],[3,2]]
+    @grid.seed(glider)
+    assert_equal 1, @grid.number_of_alive_cells_around(4,0)
+    assert_equal 3, @grid.number_of_alive_cells_around(4,1)
+    assert_equal 2, @grid.number_of_alive_cells_around(4,2)
+    assert_equal 1, @grid.number_of_alive_cells_around(2,1)
+    assert_equal 3, @grid.number_of_alive_cells_around(3,2)
+  end
+
 end
 
